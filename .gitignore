@@ -52,11 +52,6 @@ Temporary Items
 #     Unity Ignored Files   
 #==============================
 
-# Unity InTheDark project folder
-#
-InTheDark/Temp/
-InTheDark/Library
-InTheDark/Obj/
 
 
 *.csproj
@@ -65,3 +60,17 @@ InTheDark/Obj/
 *.user
 *.userprefs
 *.DS_store
+
+
+# Unity InTheDark project folder
+#
+InTheDark/Temp/
+InTheDark/Library
+InTheDark/Obj/
+
+
+# Unity BasketShooter project folder
+#
+Basket Shooter/Temp/
+Basket Shooter/Library
+Basket Shooter/Obj/
