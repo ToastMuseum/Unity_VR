@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsolePrint : MonoBehaviour {
+public class InTheDarkGame : MonoBehaviour {
 
 	float distance;
 	float prevDist;
 	Vector3 location_home;
 	Vector3 location_player;
+	bool gameOver = false;
 
 
 	// Use this for initialization
@@ -20,29 +21,27 @@ public class ConsolePrint : MonoBehaviour {
 		location_player = new Vector3(Random.Range(-6,6),Random.Range(-6,6), 0.0f);
 		location_home = new Vector3(Random.Range(-6,6),Random.Range(-6,6), 0.0f);
 
-
-
-		//Update location from home
-
-		//Repeat
-
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		MoveCharacter ();
+		if(!gameOver){
+			MoveCharacter(KeyCode.LeftArrow, new Vector3(-1f, 0f, 0f));
+			MoveCharacter(KeyCode.RightArrow, new Vector3(1f, 0f, 0f));
+			MoveCharacter(KeyCode.DownArrow, new Vector3(0f, -1f, 0f));
+			MoveCharacter(KeyCode.UpArrow, new Vector3(0f, 1f, 0f));
+		}
 
 	}
 
-	void CheckDistance(){
+	private void PrintDistanceToExit(){
 		
 		//Calculate distance from home
 		distance = Vector3.Magnitude(location_player - location_home);
 		distance = (location_player - location_home).magnitude;
 		if(location_player == location_home){
-			print ("You reach the voice! A light is shining. \nIt's just a an old parrot talking to itself.");
+			print ("You reach the voice! A light is shining on\n an old parrot talking to itself.");
+			gameOver = true;
 		}else if (distance > prevDist) {
 			print ("The voice is getting quiter. You must be moving farther from the voice");
 
@@ -61,28 +60,16 @@ public class ConsolePrint : MonoBehaviour {
 
 	}
 
-	void MoveCharacter(){
+
+
+	private void MoveCharacter(KeyCode key, Vector3 movementVector){
 		//Read player's move.
-		if(Input.GetKeyDown(KeyCode.LeftArrow)){
-			location_player -= new Vector3(1f, 0f, 0f);
-			CheckDistance ();
+		if(Input.GetKeyDown(key)){
+			location_player += movementVector;
+			PrintDistanceToExit ();
 			//print (location_player);
 		}
-		if(Input.GetKeyDown(KeyCode.RightArrow)){
-			location_player += new Vector3(1f, 0f, 0f);
-			CheckDistance ();
-			//print (location_player);
-		}
-		if(Input.GetKeyDown(KeyCode.DownArrow)){
-			location_player -= new Vector3(0f, 1f, 0f);
-			CheckDistance ();
-			//print (location_player);
-		}
-		if(Input.GetKeyDown(KeyCode.UpArrow)){
-			location_player += new Vector3(0f, 1f, 0f);
-			CheckDistance ();
-			//print (location_player);
-		}
+			
 	}
 
 }
