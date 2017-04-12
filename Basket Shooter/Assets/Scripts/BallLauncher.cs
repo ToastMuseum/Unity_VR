@@ -26,8 +26,12 @@ public class BallLauncher : MonoBehaviour {
 		if (Input.GetButtonDown ("Fire1")) {
 			GameObject instance = Instantiate (ballPrefab);
 			instance.transform.position = transform.position;
+
+			Camera camera = GetComponentInChildren<Camera> ();
+
+
 			Rigidbody rb = instance.GetComponent<Rigidbody> ();
-			rb.velocity = initialVelocity;
+			rb.velocity = camera.transform.rotation * initialVelocity;
 		}
 	}
 
