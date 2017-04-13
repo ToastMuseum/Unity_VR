@@ -29,7 +29,6 @@ public class BallLauncher : MonoBehaviour {
 
 			Camera camera = GetComponentInChildren<Camera> ();
 
-
 			Rigidbody rb = instance.GetComponent<Rigidbody> ();
 			rb.velocity = camera.transform.rotation * initialVelocity;
 		}
