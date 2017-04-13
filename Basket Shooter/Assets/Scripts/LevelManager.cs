@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+	public float countDown = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,13 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			LoadNextScene ();
+		
+		if (countDown > 0) {
+			countDown -= Time.deltaTime;
+
+			if (countDown <= 0) {
+				LoadNextScene ();
+			}
 		}
 	}
 
