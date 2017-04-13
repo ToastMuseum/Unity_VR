@@ -15,15 +15,21 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		LoadNextScene (KeyCode.Space);
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			LoadNextScene ();
+		}
 	}
 
-	void LoadNextScene(KeyCode key){
-		if(Input.GetKeyDown(key)){
+	public void LoadNextScene(){
 			//Load Scene
 			int currentIndex = SceneManager.GetActiveScene().buildIndex;
 			//load current index + 1
 			SceneManager.LoadScene(currentIndex+1);
-		}
+	}
+
+	public void LoadPreviousLevel(){
+		//Load Scene
+		int currentIndex = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(currentIndex-1);
 	}
 }
