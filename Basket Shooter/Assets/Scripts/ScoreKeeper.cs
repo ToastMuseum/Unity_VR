@@ -8,7 +8,8 @@ public class ScoreKeeper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		// keeps component in next loaded scene
+		DontDestroyOnLoad (gameObject);
 	}
 	
 	// Update is called once per frame
