@@ -19,6 +19,8 @@ public class ScoreKeeper : MonoBehaviour {
 
 	public void IncrementScore(int targetWorth){
 		score += targetWorth;
-		print ("Score: " + score);
+
+		AudioSource source = GetComponent<AudioSource> ();
+		source.Play ();
 	}
 }
