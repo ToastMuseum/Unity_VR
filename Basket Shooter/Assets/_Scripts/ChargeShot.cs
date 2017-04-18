@@ -6,6 +6,8 @@ public class ChargeShot : MonoBehaviour {
 	public GameObject ballPrefab;
 	public float ballSpeed = 5.0f;
 
+	public Vector3 arcShot = new Vector3 (0f,0.4f,0f);
+
 	public float maxLaunchSpeed;
 	//public AudioClip chargeShot;
 	public AudioClip launchSound;
@@ -14,6 +16,19 @@ public class ChargeShot : MonoBehaviour {
 	[SerializeField]
 	private float launchSpeed;
 	private AudioSource audioSource;
+
+
+	[SerializeField]
+	private Stat chargeBar;
+
+	private void Awake(){
+		chargeBar.MaxVal = maxLaunchSpeed-launchSpeed;
+		chargeBar.Initialize ();
+		//chargeBar.MaxVal = maxLaunchSpeed-launchSpeed;
+
+
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -34,10 +49,12 @@ public class ChargeShot : MonoBehaviour {
 			audioSource.clip = launchSound;
 			audioSource.Play ();
 
-			InstantiateBall (Vector3.forward*launchSpeed);
+			InstantiateBall ((Vector3.forward + arcShot)*launchSpeed);
 
 			launchSpeed = 10;
+			chargeBar.CurrVal = 0;
 		}
+			
 		
 	}
 
@@ -57,8 +74,12 @@ public class ChargeShot : MonoBehaviour {
 	void ChargingShot(){
 		if (launchSpeed <= maxLaunchSpeed) {
 			launchSpeed += speedIncreasePerFrame; 
+
+			chargeBar.CurrVal +=speedIncreasePerFrame;
 		}
 	}
+
+
 
 
 }
