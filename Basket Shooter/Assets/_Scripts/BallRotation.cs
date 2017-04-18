@@ -16,10 +16,18 @@ public class BallRotation : MonoBehaviour {
 	}
 
 	void BallOrientation (){
-		player = GameObject.Find ("Player");
-		initialKick = player.transform.localRotation * Vector3.right;
-	}
+		player = GameObject.Find ("VRPlayer_HUD");
+		if (!player) {
+			print (player);
+			player = GameObject.Find ("Player");
+		}
 
+		if(player){
+			print (player);
+			initialKick = player.transform.localRotation * Vector3.right;
+		}
+
+	}
 	void BallSpin(){
 		rigidBody = GetComponent<Rigidbody> ();
 		rigidBody.angularVelocity = initialKick*-4000;

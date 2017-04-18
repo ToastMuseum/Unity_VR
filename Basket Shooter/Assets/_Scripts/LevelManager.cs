@@ -38,4 +38,11 @@ public class LevelManager : MonoBehaviour {
 		int currentIndex = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(currentIndex-1);
 	}
+
+	public void LoadVRScene(){
+		//Load Scene
+		int currentIndex = SceneManager.GetActiveScene().buildIndex;
+		//load current index + 1
+		SceneManager.LoadScene(3);
+	}
 }
