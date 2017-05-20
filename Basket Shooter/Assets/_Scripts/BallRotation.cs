@@ -16,14 +16,12 @@ public class BallRotation : MonoBehaviour {
 	}
 
 	void BallOrientation (){
-		player = GameObject.Find ("VRPlayer_HUD");
+		player = GameObject.Find ("Player");
 		if (!player) {
-			print (player);
-			player = GameObject.Find ("Player");
+			player = GameObject.Find ("Main Camera");
 		}
 
 		if(player){
-			print (player);
 			initialKick = player.transform.localRotation * Vector3.right;
 		}
 
